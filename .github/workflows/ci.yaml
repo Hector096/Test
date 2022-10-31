@@ -1,8 +1,8 @@
-name: CI
+name: Test
 on: pull_request
 jobs:
   standard-checks:
-    name: Lint and Test
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -12,7 +12,5 @@ jobs:
 
       - name: Install packages
         run: npm ci
-      - name: Run ESlint
-        run: npm run ci:lint
       - name: Run Tests
         run: npm run ci:test
