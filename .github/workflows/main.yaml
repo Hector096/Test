@@ -1,7 +1,7 @@
 name: Test and Build
 on: pull_request
 jobs:
-  static:
+  run-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,4 +12,4 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - run: |
-          npx vercel build
+          npx vercel test
