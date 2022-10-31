@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   Test Build and Deploy-Preview:
     runs-on: ubuntu-latest
