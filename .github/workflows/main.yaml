@@ -1,16 +1,16 @@
-name: Test
+name: Build
 on: pull_request
 jobs:
-  standard-checks:
-    name: Test
+  static:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-
-      - name: Install packages
-        run: npm ci
-      - name: Run Tests
-        run: npm run ci:test
+      - uses: actions/checkout@v2
+      - run: |
+          npm ci
+          npx vercel pull --yes --token=${VERCEL_TOKEN}
+        env:
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_NEXTJS }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - run: |
+          npx vercel build
